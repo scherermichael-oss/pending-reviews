@@ -1,0 +1,54 @@
+{
+  "name": "pending-reviews",
+  "version": "0.0.0",
+  "description": "Checks for requested reviews that are still pending.",
+  "author": {
+    "name": "Michael Scherer",
+    "email": "mail@scherermichael.net"
+  },
+  "repository": "https://github.com/scherermichael/pending-reviews",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "scripts": {
+    "lint": "standard",
+    "start": "probot run ./index.js",
+    "pretest": "npm run lint",
+    "test": "jest",
+    "test:watch": "jest . --watch"
+  },
+  "standard": {
+    "globals": [
+      "jest",
+      "it",
+      "expect",
+      "describe"
+    ]
+  },
+  "keywords": [
+    "probot",
+    "probot-app",
+    "pull-request",
+    "review"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@semantic-release/commit-analyzer": "5.0.3",
+    "debug": "3.1.0",
+    "probot": "6.1.0"
+  },
+  "devDependencies": {
+    "jest": "22.4.3",
+    "localtunnel": "1.9.0",
+    "smee-client": "1.0.1",
+    "standard": "11.0.1"
+  },
+  "jest": {
+    "testRegex": "/test/unit/.+\\.test\\.js$"
+  },
+  "engines": {
+    "node": "8"
+  }
+}
