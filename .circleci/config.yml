@@ -1,0 +1,54 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Test
+          command: npm test
+
+  # deploy:
+  #   docker:
+  #     - image: circleci/node:8
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Export repository name
+  #         command: |
+  #           echo 'export GITHUB_REPO=${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}' >> $BASH_ENV
+  #           source $BASH_ENV
+  #     - restore_cache:
+  #         key: dependency-cache-{{ checksum "package.json" }}
+  #     - run:
+  #         name: Install
+  #         command: npm install
+  #     - save_cache:
+  #         key: dependency-cache-{{ checksum "package.json" }}
+  #         paths:
+  #           - node_modules
+  #     - run:
+  #         name: Deploy
+  #         command: DEBUG=glitch-deploy* npx glitch-deploy
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
+      # - deploy:
+      #     requires:
+      #       - test
+      #     filters:
+      #       branches:
+      #         only: master
