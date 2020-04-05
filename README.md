@@ -1,7 +1,5 @@
 # pending-reviews
 
-[![CircleCI](https://circleci.com/gh/scherermichael/pending-reviews.svg?style=svg)](https://circleci.com/gh/scherermichael/pending-reviews)
-
 Checks for requested reviews that are still pending.
 
 # Purpose
